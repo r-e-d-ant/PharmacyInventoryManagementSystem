@@ -10,7 +10,6 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
-    <None Remove="Pages\Medecines\" />
     <None Remove="Pages\Suppliers\" />
     <None Remove="Pages\Users\" />
   </ItemGroup>
@@ -31,7 +30,6 @@
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Medecines\" />
     <Folder Include="Pages\Suppliers\" />
     <Folder Include="Pages\Users\" />
   </ItemGroup>
