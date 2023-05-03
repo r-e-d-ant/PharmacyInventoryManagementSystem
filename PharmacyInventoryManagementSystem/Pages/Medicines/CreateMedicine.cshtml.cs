@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
+using PharmacyInventoryManagementSystem.Pages.Medecines;
 
 namespace PharmacyInventoryManagementSystem.Pages.Medicines
 {
@@ -12,10 +13,75 @@ namespace PharmacyInventoryManagementSystem.Pages.Medicines
     {
         public MedicinesDataToInsert medicine = new MedicinesDataToInsert();
 
+        public List<retrievedRows> retRows = new List<retrievedRows>();
+
+        public List<categoriesInfos> categoriesList = new List<categoriesInfos>();
+        public List<typesInfos> typessList = new List<typesInfos>();
+        public List<suppliersInfos> suppliersList = new List<suppliersInfos>();
+
         string connstring = @"server=localhost;user=root;password=mugishathi;database=pharmacyInventoryMgtSystem_db";
 
         public string errors = "";
         public string success = "";
+
+        public List<List<String>> getResult(string table_name, string column1, string column2)
+        {
+            MySqlConnection conn = null;
+
+            using (conn = new MySqlConnection(connstring))
+            {
+                List<List<String>> resultList = new List<List<String>>();
+
+                conn.Open();
+                String qry = "SELECT "+column1+", "+column2+" FROM " + table_name + "";
+
+                using (MySqlCommand cmd = new MySqlCommand(qry, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            retrievedRows retrRows = new retrievedRows();
+
+                            retrRows.id = "" + reader.GetString(0);
+                            retrRows.name = reader.GetString(1);
+
+                            resultList.Add(retrRows);
+                        }
+                    }
+                }
+                return resultList;
+            }
+        }
+
+
+        public void OnGet()
+        {
+            List <String> categoriesReader = getResult("tbl_medicine_category", "tbl_medicine_category.category_id", "tbl_medicine_category.category_name");
+
+            categoriesInfos categories = new categoriesInfos();
+
+            categories.category_id = categoriesReader[0];
+            categories.category_name = categoriesReader[1];
+            categoriesList.Add(categories);
+
+            List<String> typesReader = getResult("tbl_medicine_type", "tbl_medicine_type.type_id", "tbl_medicine_type.type_name");
+
+            typesInfos types = new typesInfos();
+
+            types.type_id = typesReader[0];
+            types.type_name = typesReader[1];
+            typessList.Add(types);
+
+            List<String> suppliersReader = getResult("tbl_supplier", "tbl_supplier.supplier_id", "tbl_supplier.supplier_name");
+
+            suppliersInfos suppliers = new suppliersInfos();
+
+            suppliers.supplier_id = suppliersReader[0];
+            suppliers.supplier_name = suppliersReader[1];
+            suppliersList.Add(suppliers);
+        }
+
 
         public void OnPost()
         {
@@ -59,11 +125,33 @@ namespace PharmacyInventoryManagementSystem.Pages.Medicines
 
                     if (rowsAffected >= 1)
                     {
-                        Response.Redirect("/Medicines/ManageMedicines");
+                        Response.Redirect("/Medicines/ManageMedicines/");
                     }
                 }
             }
         }
+    }
+
+    public class retrievedRows
+    {
+        public string id;
+        public string name;
+    }
+
+    public class categoriesInfos
+    {
+        public string category_id;
+        public string category_name;
+    }
+    public class typesInfos
+    {
+        public string type_id;
+        public string type_name;
+    }
+    public class suppliersInfos
+    {
+        public string supplier_id;
+        public string supplier_name;
     }
 
     public class MedicinesDataToInsert
