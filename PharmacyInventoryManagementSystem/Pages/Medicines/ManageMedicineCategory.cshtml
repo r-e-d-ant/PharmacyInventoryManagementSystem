@@ -1,0 +1,54 @@
+﻿@page
+@model PharmacyInventoryManagementSystem.Pages.Medicines.ManageMedicineCategoryModel
+@{
+}
+
+<div class="container mb-4 row gap-2">
+    <a class="btn btn-primary col-3" href="/Medicines/ManageMedicines/">Manage medicine</a>
+    <a class="btn btn-primary col-3" href="/Medicines/ManageMedicineCategory/">Manage medicine category</a>
+    <a class="btn btn-primary col-3" href="/Medicines/ManageMedicineType/">Manage medicine type</a>
+</div>
+
+<div class="container">
+    <form method="POST" class="mb-5 mt-6">
+        <div class="mb-3">
+            <label class="form-label">Category name</label>
+
+            <div class="row gap-2">
+                <div class="col">
+                    <input type="text" class="form-control col-3" name="category_name" value="@Model.category.category_name" />
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-success col-3">Create</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <h1 class="h2">List of medicine categories</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category name</th>
+                <th>Created date</th>
+                <th>Creator</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var category in Model.listCategories)
+            {
+                <tr>
+                    <td>@category.category_name</td>
+                    <td>@category.created_date</td>
+                    <td>@category.creator</td>
+                    <td>
+                        <a href="/Patients/edit?id=@category.category_id" class="btn btn-warning">Edit</a>
+                        <a href="/Patients/delete?id=@category.category_id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
