@@ -1,0 +1,65 @@
+﻿@page
+@model PharmacyInventoryManagementSystem.Pages.Medicines.CreateMedicineModel
+@{
+}
+
+<h2>New Medicine</h2>
+<div class="container">
+    <form method="POST">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Batch No</label>
+            <input type="text" class="form-control" name="batchNo" value="@Model.medicine.batchNo" />
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Name</label>
+            <input type="text" class="form-control" name="medName" value="@Model.medicine.name" />
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Specification</label>
+            <textarea type="text" class="form-control" name="specification" value="@Model.medicine.specification"></textarea>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Medicine category</label>
+            <input type="text" class="form-control" name="medCateg" value="@Model.medicine.medCateg" />
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Medicine type</label>
+            <input type="text" class="form-control" name="medType" value="@Model.medicine.medType" />
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Supplier</label>
+            <input type="text" class="form-control" name="supplier" value="@Model.medicine.supplier" />
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Measurement</label>
+            <input type="text" class="form-control" name="measurement" value="@Model.medicine.measurement" />
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Remarks (Optional)</label>
+            <textarea type="text" class="form-control" name="remarks" value="@Model.medicine.remarks"></textarea>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Price</label>
+            <input type="text" class="form-control" name="price" value="@Model.medicine.price" />
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Retail price</label>
+            <input type="text" class="form-control" name="retailPrice" value="@Model.medicine.retailPrice" />
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Quantity on hand</label>
+            <input type="text" class="form-control" name="qtyOnHand" value="@Model.medicine.qtyOnHand" />
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Expiry date</label>
+            <input type="date" class="form-control" name="expiryDate" value="@Model.medicine.expiryDate" />
+        </div>
+
+        <div class="row">
+            <button type="submit" class="col-sm-2 btn btn-primary mr-4">Submit</button>
+            <a class="col-sm-2 btn btn-outline-danger" href="/Medicines/ManageMedicines">Cancel</a>
+        </div>
+    </form>
+</div>

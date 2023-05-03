@@ -3,3 +3,44 @@
 @{
 }
 
+<div class="container mb-4 row gap-2">
+    <a class="btn btn-primary col-3" href="/Medicines/CreateMedicine">Add medicine</a>
+    <a class="btn btn-primary col-3" href="/">Create medicine category</a>
+    <a class="btn btn-primary col-3" href="/">Create medicine type</a>
+</div>
+
+<div class="container border">
+    <h1 class="h2">List of medicines</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Batch No</th>
+                <th>Name</th>
+                <th>Specification</th>
+                <th>Measurement</th>
+                <th>Price</th>
+                <th>Retail price</th>
+                <th>Expiry date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var medicine in Model.listMedicines)
+            {
+                <tr>
+                    <td>@medicine.batchNo</td>
+                    <td>@medicine.name</td>
+                    <td>@medicine.specification</td>
+                    <td>@medicine.measurement</td>
+                    <td>@medicine.price</td>
+                    <td>@medicine.retailPrice</td>
+                    <td>@medicine.expiryDate</td>
+                    <td>
+                        <a href="/Patients/edit?id=@medicine.medicineId" class="btn btn-warning">Edit</a>
+                        <a href="/Patients/delete?id=@medicine.medicineId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
