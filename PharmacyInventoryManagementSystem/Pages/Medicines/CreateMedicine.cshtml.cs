@@ -12,9 +12,6 @@ namespace PharmacyInventoryManagementSystem.Pages.Medicines
     public class CreateMedicineModel : PageModel
     {
         public MedicinesDataToInsert medicine = new MedicinesDataToInsert();
-
-        public List<retrievedRows> retRows = new List<retrievedRows>();
-
         public List<categoriesInfos> categoriesList = new List<categoriesInfos>();
         public List<typesInfos> typessList = new List<typesInfos>();
         public List<suppliersInfos> suppliersList = new List<suppliersInfos>();
@@ -24,62 +21,72 @@ namespace PharmacyInventoryManagementSystem.Pages.Medicines
         public string errors = "";
         public string success = "";
 
-        public List<List<String>> getResult(string table_name, string column1, string column2)
+        public void getTypesCategoryAndSuppliers()
         {
             MySqlConnection conn = null;
 
             using (conn = new MySqlConnection(connstring))
             {
-                List<List<String>> resultList = new List<List<String>>();
-
                 conn.Open();
-                String qry = "SELECT "+column1+", "+column2+" FROM " + table_name + "";
+                String categoryQuery = "SELECT category_id, category_name FROM tbl_medicine_category";
+                String typesQuery = "SELECT type_id, type_name FROM tbl_medicine_type";
+                String suppliersQuery = "SELECT supplier_id, supplier_name FROM tbl_supplier";
 
-                using (MySqlCommand cmd = new MySqlCommand(qry, conn))
+                // categories
+                using (MySqlCommand cmd = new MySqlCommand(categoryQuery, conn))
                 {
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            retrievedRows retrRows = new retrievedRows();
+                            categoriesInfos categories = new categoriesInfos();
 
-                            retrRows.id = "" + reader.GetString(0);
-                            retrRows.name = reader.GetString(1);
+                            categories.category_id = "" + reader.GetString(0);
+                            categories.category_name = reader.GetString(1);
 
-                            resultList.Add(retrRows);
+                            categoriesList.Add(categories);
                         }
                     }
                 }
-                return resultList;
+                // types
+                using (MySqlCommand cmd = new MySqlCommand(typesQuery, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            typesInfos types = new typesInfos();
+
+                            types.type_id = "" + reader.GetString(0);
+                            types.type_name = reader.GetString(1);
+
+                            typessList.Add(types);
+                        }
+                    }
+                }
+                // suppliers
+                using (MySqlCommand cmd = new MySqlCommand(suppliersQuery, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            suppliersInfos suppliers = new suppliersInfos();
+
+                            suppliers.supplier_id = "" + reader.GetString(0);
+                            suppliers.supplier_name = reader.GetString(1);
+
+                            suppliersList.Add(suppliers);
+                        }
+                    }
+                }
             }
         }
 
 
         public void OnGet()
         {
-            List <String> categoriesReader = getResult("tbl_medicine_category", "tbl_medicine_category.category_id", "tbl_medicine_category.category_name");
-
-            categoriesInfos categories = new categoriesInfos();
-
-            categories.category_id = categoriesReader[0];
-            categories.category_name = categoriesReader[1];
-            categoriesList.Add(categories);
-
-            List<String> typesReader = getResult("tbl_medicine_type", "tbl_medicine_type.type_id", "tbl_medicine_type.type_name");
-
-            typesInfos types = new typesInfos();
-
-            types.type_id = typesReader[0];
-            types.type_name = typesReader[1];
-            typessList.Add(types);
-
-            List<String> suppliersReader = getResult("tbl_supplier", "tbl_supplier.supplier_id", "tbl_supplier.supplier_name");
-
-            suppliersInfos suppliers = new suppliersInfos();
-
-            suppliers.supplier_id = suppliersReader[0];
-            suppliers.supplier_name = suppliersReader[1];
-            suppliersList.Add(suppliers);
+            getTypesCategoryAndSuppliers();
         }
 
 
@@ -130,12 +137,6 @@ namespace PharmacyInventoryManagementSystem.Pages.Medicines
                 }
             }
         }
-    }
-
-    public class retrievedRows
-    {
-        public string id;
-        public string name;
     }
 
     public class categoriesInfos
