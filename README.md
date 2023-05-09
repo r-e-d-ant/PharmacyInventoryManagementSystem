@@ -1,5 +1,4 @@
 # Pharmacy Inventory Management System
-Pharmacy Inventory Management System
 
 Dashboard<br/>
 ![dashboard](https://github.com/r-e-d-ant/PharmacyInventoryManagementSystem/assets/66163130/5aff6f3e-a46e-44c9-9d47-ab87ef446803)
