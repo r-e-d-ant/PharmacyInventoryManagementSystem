@@ -1,4 +1,4 @@
-# PharmacyInventoryManagementSystem
+# Pharmacy Inventory Management System
 Pharmacy Inventory Management System
 
 Dashboard<br/>
