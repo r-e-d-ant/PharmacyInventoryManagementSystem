@@ -36,7 +36,6 @@
                 <th>Description</th>
                 <th>Created date</th>
                 <th>Creator</th>
-                <th>Actions</th>
             </tr>
         </thead>
 
@@ -48,10 +47,6 @@
                     <td>@supplier.description</td>
                     <td>@supplier.created_date</td>
                     <td>@supplier.creator</td>
-                    <td>
-                        <a href="/Suppliers/EditSupplier/edit?id=@supplier.supplier_id" class="btn btn-warning">Edit</a>
-                        <a href="/Suppliers/DeleteSupplier/delete?id=@supplier.supplier_id" class="btn btn-danger">Delete</a>
-                    </td>
                 </tr>
             }
         </tbody>

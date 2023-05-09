@@ -1,0 +1,74 @@
+﻿@page
+@model PharmacyInventoryManagementSystem.Pages.Medicines.UpdateMedicineModel
+@{
+}
+
+<div class="container">
+    <h3 class="text-dark mb-3">Update Medicine</h3>
+    <form method="POST" class="row">
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Batch No</label>
+            <input type="text" class="form-control" name="batchNo" value="@ViewData["batchNo"]" />
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Name</label>
+            <input type="text" class="form-control" name="medName" value="@ViewData["medName"]" />
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Specification</label>
+            <textarea type="text" class="form-control" name="specification" value="@ViewData["specification"]">@ViewData["specification"]</textarea>
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Medicine category</label>
+
+            <select name="medCateg" id="categories" class="form-select">
+                <option value="@ViewData["medCateg"]">@ViewData["medCateg"]</option>
+            </select>
+        </div>
+
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Medicine type</label>
+
+            <select name="medType" id="types" class="form-select">
+                <option value="@ViewData["medType"]">@ViewData["medType"]</option>
+            </select>
+        </div>
+
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Supplier</label>
+
+            <select name="supplier" id="suppliers" class="form-select">
+                <option value="@ViewData["supplier"]">@ViewData["supplier"]</option>
+            </select>
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Measurement</label>
+            <input type="text" class="form-control" name="measurement" value="@ViewData["measurement"]" />
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Remarks (Optional)</label>
+            <textarea type="text" class="form-control" name="remarks" value="@ViewData["remarks"]">@ViewData["remarks"]</textarea>
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Price</label>
+            <input type="text" class="form-control" name="price" value="@ViewData["price"]" />
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Retail price</label>
+            <input type="text" class="form-control" name="retailPrice" value="@ViewData["retailPrice"]" />
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Quantity on hand</label>
+            <input type="text" class="form-control" name="qtyOnHand" value="@ViewData["qtyOnHand"]" />
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label class="col-form-label">Expiry date</label>
+            <input type="date" class="form-control" name="expiryDate" value="@ViewData["expiryDate"]" />
+        </div>
+
+        <div class="col-sm-6">
+            <button type="submit" class="col-sm-2 btn btn-primary mr-4">Update</button>
+            <a class="col-sm-2 btn btn-outline-danger" href="/Medicines/ManageMedicines">Cancel</a>
+        </div>
+    </form>
+</div>

@@ -11,43 +11,52 @@
 </div>
 
 <div class="container">
-    <form method="POST" class="mb-5 mt-6">
-        <div class="mb-3">
-            <label class="form-label">Category name</label>
-
-            <div class="row gap-2">
-                <div class="col">
-                    <input type="text" class="form-control col-3" name="category_name" value="@Model.category.category_name" />
-                </div>
-                <div class="col">
-                    <button type="submit" class="btn btn-success col-3">Create</button>
-                </div>
+    <form method="POST" class="mb-5 mt-6 row">
+        <div class="row mb-3 gap-2">
+            <div class="col-sm-4">
+                <label class="form-label">Batch number</label>
+                <select name="batch_number" id="batchNumber" class="form-select col">
+                    @foreach (var medecine in Model.listMedicines)
+                    {
+                        <option value="@medecine.batch_no">@medecine.batch_no</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <label class="form-label">Amount</label>
+                <input class="form-control" id="theAmount" name="amount" value="@Model.sold.amount" />
             </div>
         </div>
+        <div>
+            <button type="submit" class="btn btn-success col-3">Sell</button>
+        </div>
     </form>
-    <h3 class="text-dark mb-3">List of medicine categories</h3>
+    <h3 class="text-dark mb-3">List of medicines sold</h3>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Category name</th>
-                <th>Created date</th>
+                <th>Batch No</th>
+                <th>Medecine name</th>
+                <th>Amount</th>
+                <th>Earned</th>
                 <th>Creator</th>
-                <th>Actions</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach (var category in Model.listCategories)
+            @foreach (var sold in Model.medecineSolds)
             {
                 <tr>
-                    <td>@category.category_name</td>
-                    <td>@category.created_date</td>
-                    <td>@category.creator</td>
-                    <td>
-                        <a href="/Patients/edit?id=@category.category_id" class="btn btn-warning">Edit</a>
-                        <a href="/Patients/delete?id=@category.category_id" class="btn btn-danger">Delete</a>
-                    </td>
+                    <td>@sold.batch_no</td>
+                    <td>@sold.medecine_name</td>
+                    <td>@sold.amount</td>
+                    <td>@sold.earned</td>
+                    <td>@sold.creator</td>
+                    @*<td>
+                        <a href="/Medecines/EditSold/edit?id=@sold.sold_id" class="btn btn-warning">Edit</a>
+                        <a href="/Patients/DeleteSold/delete?id=@sold.sold_id" class="btn btn-danger">Delete</a>
+                    </td>*@
                 </tr>
             }
         </tbody>

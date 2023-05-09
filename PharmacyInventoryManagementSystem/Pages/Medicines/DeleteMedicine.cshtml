@@ -1,0 +1,25 @@
+﻿@page
+@using MySql.Data.MySqlClient;
+@{
+    String batch_no = Request.Query["id"];
+
+    string connstring = @"server=localhost;user=root;password=mugishathi;database=pharmacyInventoryMgtSystem_db";
+
+    using (MySqlConnection conn = new MySqlConnection(connstring))
+    {
+        // Insert query
+        String query = "DELETE FROM tbl_medicine WHERE batch_no=@batch_no";
+        conn.Open();
+        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+        {
+            cmd.Parameters.AddWithValue("@batch_no", batch_no);
+
+            int rowsAffected = cmd.ExecuteNonQuery();
+
+            if (rowsAffected >= 1)
+            {
+                Response.Redirect("/Medicines/ManageMedicines/");
+            }
+        }
+    }
+    }

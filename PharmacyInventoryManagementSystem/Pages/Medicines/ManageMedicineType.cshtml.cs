@@ -49,7 +49,7 @@ namespace PharmacyInventoryManagementSystem.Pages.Medicines
             using (conn = new MySqlConnection(connstring))
             {
                 conn.Open();
-                String qry = "SELECT type_id, type_name, created_date, full_name FROM tbl_medicine_type JOIN tbl_user ON tbl_user.user_id = tbl_medicine_type.created_by";
+                String qry = "SELECT type_id, tbl_medicine_type.type_name, tbl_medicine_type.created_date, tbl_user.full_name FROM tbl_medicine_type JOIN tbl_user ON tbl_user.user_id = tbl_medicine_type.created_by";
                 using (MySqlCommand cmd = new MySqlCommand(qry, conn))
                 {
                     using (MySqlDataReader reader = cmd.ExecuteReader())

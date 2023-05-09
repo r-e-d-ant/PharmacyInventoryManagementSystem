@@ -56,7 +56,6 @@
                 <th>User type</th>
                 <th>Account status</th>
                 <th>Created date</th>
-                <th>Actions</th>
             </tr>
         </thead>
 
@@ -68,10 +67,6 @@
                     <td>@((@user.user_type == "0") ? "Regular" : "Admin")</td>
                     <td>@((@user.account_status == "0") ? "Disabled" : "Active")</td>
                     <td>@user.created_date</td>
-                    <td>
-                        <a href="/Users/EditUser/edit?id=@user.user_id" class="btn btn-warning">Edit</a>
-                        <a href="/Users/DeleteUser/delete?id=@user.user_id" class="btn btn-danger">Delete</a>
-                    </td>
                 </tr>
             }
         </tbody>

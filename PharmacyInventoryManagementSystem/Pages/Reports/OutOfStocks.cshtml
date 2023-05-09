@@ -3,3 +3,32 @@
 @{
 }
 
+<div class="container mb-4 row gap-3">
+    <a class="btn btn-primary col-sm-2" href="/Medicines/CreateMedicine/">Add medicine</a>
+    <a class="btn btn-primary col-sm-2" href="/Medicines/SellMedicine/">Sell medicine</a>
+    <a class="btn btn-primary col-sm-3" href="/Medicines/ManageMedicineCategory/">Manage medicine category</a>
+    <a class="btn btn-primary col-sm-3" href="/Medicines/ManageMedicineType/">Manage medicine type</a>
+</div>
+
+<div class="container">
+    <h3 class="text-dark mb-3">List of medicines out in stock</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Batch No</th>
+                <th>Name</th>
+                <th>Supplier</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var outMed in Model.listOuts)
+            {
+                <tr>
+                    <td>@outMed.batch_no</td>
+                    <td>@outMed.name</td>
+                    <td>@outMed.supplier_name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
