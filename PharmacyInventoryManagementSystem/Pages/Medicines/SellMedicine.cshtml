@@ -1,0 +1,64 @@
+﻿@page
+@model PharmacyInventoryManagementSystem.Pages.Medicines.SellMedicineModel
+@{
+}
+
+<div class="container mb-4 row gap-3">
+    <a class="btn btn-primary col-sm-2" href="/Medicines/CreateMedicine/">Add medicine</a>
+    <a class="btn btn-primary col-sm-2" href="/Medicines/SellMedicine/">Sell medicine</a>
+    <a class="btn btn-primary col-sm-3" href="/Medicines/ManageMedicineCategory/">Manage medicine category</a>
+    <a class="btn btn-primary col-sm-3" href="/Medicines/ManageMedicineType/">Manage medicine type</a>
+</div>
+
+<div class="container">
+    <form method="POST" class="mb-5 mt-6 row">
+        <div class="row mb-3 gap-2">
+            <div class="col-sm-4">
+                <label class="form-label">Batch number</label>
+                <select name="batch_number" id="batchNumber" class="form-select col">
+                    @foreach (var medecine in Model.listMedicines)
+                    {
+                        <option value="@medecine.batch_no">@medecine.batch_no</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <label class="form-label">Amount</label>
+                <input class="form-control" id="theAmount" name="amount" value="@Model.sold.amount" />
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success col-3">Sell</button>
+        </div>
+    </form>
+    <h3 class="text-dark mb-3">List of medicines sold</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Batch No</th>
+                <th>Medecine name</th>
+                <th>Amount</th>
+                <th>Earned</th>
+                <th>Creator</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var sold in Model.medecineSolds)
+            {
+                <tr>
+                    <td>@sold.batch_no</td>
+                    <td>@sold.medecine_name</td>
+                    <td>@sold.amount</td>
+                    <td>@sold.earned</td>
+                    <td>@sold.creator</td>
+                    @*<td>
+                        <a href="/Medecines/EditSold/edit?id=@sold.sold_id" class="btn btn-warning">Edit</a>
+                        <a href="/Patients/DeleteSold/delete?id=@sold.sold_id" class="btn btn-danger">Delete</a>
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,31 +1,28 @@
 ﻿@page
-@model PharmacyInventoryManagementSystem.Pages.Medicines.CreateMedicineModel
+@model PharmacyInventoryManagementSystem.Pages.Medicines.UpdateMedicineModel
 @{
 }
 
 <div class="container">
-    <h3 class="text-dark mb-3">New Medicine</h3>
+    <h3 class="text-dark mb-3">Update Medicine</h3>
     <form method="POST" class="row">
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Batch No</label>
-            <input type="text" class="form-control" name="batchNo" value="@Model.medicine.batchNo" />
+            <input type="text" class="form-control" name="batchNo" value="@ViewData["batchNo"]" />
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Name</label>
-            <input type="text" class="form-control" name="medName" value="@Model.medicine.name" />
+            <input type="text" class="form-control" name="medName" value="@ViewData["medName"]" />
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Specification</label>
-            <textarea type="text" class="form-control" name="specification" value="@Model.medicine.specification"></textarea>
+            <textarea type="text" class="form-control" name="specification" value="@ViewData["specification"]">@ViewData["specification"]</textarea>
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Medicine category</label>
 
             <select name="medCateg" id="categories" class="form-select">
-                @foreach (var category in Model.categoriesList)
-                {
-                    <option value="@category.category_id">@category.category_name</option>
-                }
+                <option value="@ViewData["medCateg"]">@ViewData["medCateg"]</option>
             </select>
         </div>
 
@@ -33,10 +30,7 @@
             <label class="col-form-label">Medicine type</label>
 
             <select name="medType" id="types" class="form-select">
-                @foreach (var type in Model.typessList)
-                {
-                    <option value="@type.type_id">@type.type_name</option>
-                }
+                <option value="@ViewData["medType"]">@ViewData["medType"]</option>
             </select>
         </div>
 
@@ -44,39 +38,36 @@
             <label class="col-form-label">Supplier</label>
 
             <select name="supplier" id="suppliers" class="form-select">
-                @foreach (var supplier in Model.suppliersList)
-                {
-                    <option value="@supplier.supplier_id">@supplier.supplier_name</option>
-                }
+                <option value="@ViewData["supplier"]">@ViewData["supplier"]</option>
             </select>
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Measurement</label>
-            <input type="text" class="form-control" name="measurement" value="@Model.medicine.measurement" />
+            <input type="text" class="form-control" name="measurement" value="@ViewData["measurement"]" />
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Remarks (Optional)</label>
-            <textarea type="text" class="form-control" name="remarks" value="@Model.medicine.remarks"></textarea>
+            <textarea type="text" class="form-control" name="remarks" value="@ViewData["remarks"]">@ViewData["remarks"]</textarea>
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Price</label>
-            <input type="text" class="form-control" name="price" value="@Model.medicine.price" />
+            <input type="text" class="form-control" name="price" value="@ViewData["price"]" />
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Retail price</label>
-            <input type="text" class="form-control" name="retailPrice" value="@Model.medicine.retailPrice" />
+            <input type="text" class="form-control" name="retailPrice" value="@ViewData["retailPrice"]" />
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Quantity on hand</label>
-            <input type="text" class="form-control" name="qtyOnHand" value="@Model.medicine.qtyOnHand" />
+            <input type="text" class="form-control" name="qtyOnHand" value="@ViewData["qtyOnHand"]" />
         </div>
         <div class="col-sm-6 mb-3">
             <label class="col-form-label">Expiry date</label>
-            <input type="date" class="form-control" name="expiryDate" value="@Model.medicine.expiryDate" />
+            <input type="date" class="form-control" name="expiryDate" value="@ViewData["expiryDate"]" />
         </div>
 
         <div class="col-sm-6">
-            <button type="submit" class="col-sm-2 btn btn-primary mr-4">Submit</button>
+            <button type="submit" class="col-sm-2 btn btn-primary mr-4">Update</button>
             <a class="col-sm-2 btn btn-outline-danger" href="/Medicines/ManageMedicines">Cancel</a>
         </div>
     </form>

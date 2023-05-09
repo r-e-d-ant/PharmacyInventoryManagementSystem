@@ -3,3 +3,72 @@
 @{
 }
 
+<div class="container mb-4 row gap-3">
+    <a class="btn btn-primary col-sm-3" href="/Medicines/CreateMedicine/">Add medicine</a>
+    <a class="btn btn-primary col-sm-3" href="/Medicines/ManageMedicineCategory/">Manage medicine category</a>
+    <a class="btn btn-primary col-sm-3" href="/Medicines/ManageMedicineType/">Manage medicine type</a>
+</div>
+
+<div class="container">
+    <form method="POST" class="mb-5 mt-6 row">
+        <div class="row mb-3 gap-2">
+            <div class="col-sm-4">
+                <label class="form-label">Full name</label>
+                <div class="col">
+                    <input type="text" class="form-control col-3" name="full_name" value="@Model.user.full_name" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label class="form-label">Password</label>
+                <div class="col">
+                    <input type="password" class="form-control col-3" name="password" value="@Model.user.password" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label class="form-label">User type</label>
+                <div class="col">
+                    <select name="user_type" id="userTypes" class="form-select">
+                        <option value="0">Regular</option>
+                        <option value="1">Admin</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label class="form-label">Account status</label>
+                <div class="col">
+                    <select name="account_status" id="accountStatus" class="form-select">
+                        <option value="1">Active</option>
+                        <option value="0">Disabled</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success col-3">Create</button>
+        </div>
+    </form>
+    <h3 class="text-dark mb-3">List of system users</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Full name</th>
+                <th>User type</th>
+                <th>Account status</th>
+                <th>Created date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var user in Model.listOfUsers)
+            {
+                <tr>
+                    <td>@user.full_name</td>
+                    <td>@((@user.user_type == "0") ? "Regular" : "Admin")</td>
+                    <td>@((@user.account_status == "0") ? "Disabled" : "Active")</td>
+                    <td>@user.created_date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

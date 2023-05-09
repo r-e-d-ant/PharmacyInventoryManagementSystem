@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="Pages\Suppliers\" />
     <None Remove="Pages\Users\" />
+    <None Remove="Pages\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -28,9 +29,12 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Remove="wwwroot\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Suppliers\" />
     <Folder Include="Pages\Users\" />
+    <Folder Include="wwwroot\fonts\" />
+    <Folder Include="Pages\Reports\" />
   </ItemGroup>
 </Project>

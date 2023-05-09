@@ -21,7 +21,7 @@ namespace PharmacyInventoryManagementSystem.Pages.Medecines
             using (conn = new MySqlConnection(connstring))
             {
                 conn.Open();
-                String qry = "SELECT medicine_id, batch_no, name, specification, measurement, price, retail_price, expiry_date FROM tbl_medicine";
+                String qry = "SELECT batch_no, name, supplier_id, specification, measurement, retail_price, quantity_on_hand, expiry_date FROM tbl_medicine";
                 using (MySqlCommand cmd = new MySqlCommand(qry, conn))
                 {
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -30,13 +30,13 @@ namespace PharmacyInventoryManagementSystem.Pages.Medecines
                         {
                             MedicinesData medicine = new MedicinesData();
 
-                            medicine.medicineId = ""+ reader.GetString(0);
-;                           medicine.batchNo = reader.GetString(1);
-                            medicine.name = reader.GetString(2);
+                            medicine.batchNo = reader.GetString(0);
+                            medicine.name = reader.GetString(1);
+                            medicine.supplier_id = reader.GetString(2);
                             medicine.specification = reader.GetString(3);
                             medicine.measurement = ""+ reader.GetString(4);
                             medicine.price = "" + reader.GetString(5);
-                            medicine.retailPrice = "" + reader.GetString(6);
+                            medicine.quantity_on_hand = "" + reader.GetString(6);
                             medicine.expiryDate = reader.GetString(7);
 
                             listMedicines.Add(medicine);
@@ -49,13 +49,13 @@ namespace PharmacyInventoryManagementSystem.Pages.Medecines
 
     public class MedicinesData
     {
-        public string medicineId;
         public string batchNo;
         public string name;
+        public string supplier_id;
         public string specification;
         public string measurement;
         public string price;
-        public string retailPrice;
+        public string quantity_on_hand;
         public string expiryDate;
     }
 }

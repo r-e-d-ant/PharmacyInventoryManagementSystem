@@ -4,13 +4,14 @@
 }
 
 <div class="container mb-4 row gap-3">
-    <a class="btn btn-primary col-sm-3" href="/Medicines/CreateMedicine/">Add medicine</a>
+    <a class="btn btn-primary col-sm-2" href="/Medicines/CreateMedicine/">Add medicine</a>
+    <a class="btn btn-primary col-sm-2" href="/Medicines/SellMedicine/">Sell medicine</a>
     <a class="btn btn-primary col-sm-3" href="/Medicines/ManageMedicineCategory/">Manage medicine category</a>
     <a class="btn btn-primary col-sm-3" href="/Medicines/ManageMedicineType/">Manage medicine type</a>
 </div>
 
 <div class="container">
-    <h3 class="h3 mb-3">List of medicines</h3>
+    <h3 class="text-dark mb-3">List of medicines</h3>
     <table class="table">
         <thead>
             <tr>
@@ -19,7 +20,7 @@
                 <th>Specification</th>
                 <th>Measurement</th>
                 <th>Price</th>
-                <th>Retail price</th>
+                <th>Quantity</th>
                 <th>Expiry date</th>
                 <th>Actions</th>
             </tr>
@@ -33,11 +34,12 @@
                     <td>@medicine.specification</td>
                     <td>@medicine.measurement</td>
                     <td>@medicine.price</td>
-                    <td>@medicine.retailPrice</td>
+                    <td>@medicine.quantity_on_hand</td>
                     <td>@medicine.expiryDate</td>
                     <td>
-                        <a href="/Patients/edit?id=@medicine.medicineId" class="btn btn-warning">Edit</a>
-                        <a href="/Patients/delete?id=@medicine.medicineId" class="btn btn-danger">Delete</a>
+                        <a href="/Medicines/UpdateMedicine?id=@medicine.batchNo" class="btn btn-warning">Edit</a>
+                        <a href="/Medicines/DeleteMedicine?id=@medicine.batchNo" class="btn btn-danger">Delete</a>
+                        @*<a href="/Patients/OutOfStocks?id=@medicine.batchNo?supplier_id=@medicine.supplier_id" class="btn btn-primary">Out</a>*@
                     </td>
                 </tr>
             }
